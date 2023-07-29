@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日期API练习</title>
+</head>
+<body>
+<div>
+    <h2 id="now">加载中....</h2>
+    <h2 id="now2">加载中....</h2>
+
+</div>
+<script>
+    setInterval(()=>{
+        const now = document.getElementById("now")
+        now.innerHTML = getNow()
+    },1000)
+    setInterval(()=>{
+        const now = document.getElementById('now2')
+        now.innerHTML = getCurDate()
+    },1000)
+
+    function getNow(){
+        return new Date().toLocaleString()
+    }
+</script>
+
+</body>
+</html>
+<script>
+    //1. 获取当前时间 包含时分秒
+    let date = new Date();
+    //2023-07-29T05:15:26.883Z
+    console.log(date);
+    //2. 指定时间获取
+    date = new Date('2022-4-1 08:30:30')
+    console.log(date);
+    date = new Date('2022-4-1')
+    console.log(date);
+
+    function getCurDate() {
+        const now = new Date();
+        const year = now.getFullYear();
+        //注:月份是0-11 需要+1
+        const month = now.getMonth() + 1; // 加1来得到正确的月份
+        //注:getDay获取的是周几
+        const day = now.getDate(); // 使用getDate()方法获取日期
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    }
+    console.log(getCurDate());
+</script>

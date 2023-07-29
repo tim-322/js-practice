@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>时间戳练习</title>
+    <style>
+        p {
+            margin-top: 100px;
+            line-height: 40px;
+            font-family: "Apple Braille", serif;
+            font-size: 40px;
+        }
+
+        div {
+            text-align: center;
+            background: blanchedalmond;
+            border: 2px #f8ffc0;
+        }
+    </style>
+</head>
+<body>
+<div>
+
+    <h2>
+        今天是:<span>loading....</span>
+    </h2>
+    <hr/>
+    <br>
+
+    <p>距离下班时间还有:</p>
+
+    <p id="left_time"></p>
+
+    <br>
+    <br>
+    <br>
+    <h3>
+        18:30:00下班
+    </h3>
+</div>
+<script>
+
+    let curDate = document.querySelector("h2 span");
+    let offWorkTime = new Date().toLocaleDateString() + ' ' + `18:30:00`;
+    offWorkTime = new Date(offWorkTime).getTime();
+    const leftTime = document.getElementById('left_time');
+
+    function stamp2Time(left) {
+        let secs = Math.trunc(left / 1000)
+        let hour = Math.trunc(secs / 60 / 60);
+        let min = Math.trunc((secs / 60) % 60);
+        secs = secs % 60;
+        return `[ ${hour}  :  ${min}  :  ${secs} ]`
+    }
+
+    setInterval(() => {
+        curDate.innerHTML = new Date().toLocaleString()
+        const now = +new Date();
+        let left = offWorkTime - now;
+        leftTime.innerHTML = stamp2Time(left);
+    }, 1000)
+</script>
+</body>
+<script>
+    const date = new Date();
+    // 获取时间戳的方法
+    //1. new Date().getTime
+    console.log(date.getTime());
+    //2. +new Date() 简写
+    console.log(+date);
+    //3. Date.now()函数
+    console.log(Date.now());
+</script>
+</html>
